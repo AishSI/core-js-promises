@@ -17,8 +17,14 @@
  * 0    => promise that will be fulfilled
  * 1    => promise that will be fulfilled
  */
-function getPromise(/* number */) {
-  throw new Error('Not implemented');
+function getPromise(number) {
+  return new Promise((resolve, reject) => {
+    if (number >= 0) {
+      resolve(number);
+    } else {
+      reject(number);
+    }
+  });
 }
 
 /**
@@ -35,6 +41,21 @@ function getPromise(/* number */) {
  */
 function getPromiseResult(/* source */) {
   throw new Error('Not implemented');
+  // return new Promise(
+  //   new Promise((resolve, reject) => {
+  //     if (source) {
+  //       resolve('succes');
+  //     } else {
+  //       reject('fail');
+  //     }
+  //   })
+  // )
+  //   .then(() => {
+  //     return new Promise(() => 'sucess');
+  //   })
+  //   .catch(() => {
+  //     return new Promise(() => 'sucess');
+  //   });
 }
 
 /**
