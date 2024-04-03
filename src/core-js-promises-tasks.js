@@ -20,9 +20,9 @@
 function getPromise(number) {
   return new Promise((resolve, reject) => {
     if (number >= 0) {
-      resolve(number);
+      resolve();
     } else {
-      reject(number);
+      reject();
     }
   });
 }
@@ -39,23 +39,10 @@ function getPromise(number) {
  * Promise.resolve('success') => promise that will be fulfilled with 'success' value
  * Promise.reject('fail')     => promise that will be fulfilled with 'fail' value
  */
-function getPromiseResult(/* source */) {
-  throw new Error('Not implemented');
-  // return new Promise(
-  //   new Promise((resolve, reject) => {
-  //     if (source) {
-  //       resolve('succes');
-  //     } else {
-  //       reject('fail');
-  //     }
-  //   })
-  // )
-  //   .then(() => {
-  //     return new Promise(() => 'sucess');
-  //   })
-  //   .catch(() => {
-  //     return new Promise(() => 'sucess');
-  //   });
+function getPromiseResult(source) {
+  return new Promise((resolve) => {
+    source.then(() => resolve('success')).catch(() => resolve('fail'));
+  });
 }
 
 /**
