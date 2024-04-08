@@ -139,21 +139,11 @@ function getAllResult(promises) {
  * [promise1, promise4, promise3, promise2] => Promise.resolved('10403020')
  */
 function queuPromises(promises) {
-  const result = [];
-
-  function myPromiseAll(index = 0) {
-    if (index === promises.length) {
-      return Promise.resolve(result.join(''));
-    }
-
-    return promises[index].then((value) => {
-      result.push(value);
-
-      return myPromiseAll(index + 1);
-    });
-  }
-
-  return myPromiseAll();
+  return promises.reduce(
+    (acc, promise) =>
+      acc.then((result) => promise.then((value) => result + value)),
+    Promise.resolve('')
+  );
 }
 
 module.exports = {
